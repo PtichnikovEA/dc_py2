@@ -67,9 +67,9 @@ class AudioBook(Book):
             if value >= 0:
                 self.duration = value
             else:
-                raise ValueError("Количество страниц должно быть неотрицательной")
+                raise ValueError("Продолжительность должна быть неотрицательной")
         else:
-            raise TypeError('Количество страниц должно быть числом')
+            raise TypeError("Продолжительность должна быть числом")
 
     def __repr__(self):
         return f'{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, pages={self.duration})'
