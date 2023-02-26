@@ -16,23 +16,15 @@ class Book:
     def name(self):
         return self._name
 
-    @name.setter
-    def name(self, value):
-        raise AttributeError('Attribute name is read-only')
-
     @property
     def author(self):
         return self._author
-
-    @author.setter
-    def author(self, value):
-        raise AttributeError('Attribute author is read-only')
 
 
 class PaperBook(Book):
     def __init__(self, name: str, author: str, pages: int):
         super().__init__(name, author)
-        self._pages = pages
+        self.pages = pages
 
     @property
     def pages(self):
@@ -42,7 +34,7 @@ class PaperBook(Book):
     def pages(self, value):
         if type(value) == int:
             if value >= 0:
-                self.pages = value
+                self._pages = value
             else:
                 raise ValueError("Количество страниц должно быть неотрицательной")
         else:
@@ -55,7 +47,7 @@ class PaperBook(Book):
 class AudioBook(Book):
     def __init__(self, name: str, author: str, duration: float):
         super().__init__(name, author)
-        self._duration = duration
+        self.duration = duration
 
     @property
     def duration(self):
@@ -65,7 +57,7 @@ class AudioBook(Book):
     def duration(self, value):
         if type(value) == float or int:
             if value >= 0:
-                self.duration = value
+                self._duration = value
             else:
                 raise ValueError("Продолжительность должна быть неотрицательной")
         else:
@@ -77,6 +69,7 @@ class AudioBook(Book):
 
 if __name__ == '__main__':
     b = PaperBook('Python for professionals', 'Matt Telles', 23)
+    b.pages = 25
     print(b.pages)
     b.author = 'Harry Rogers'
     # AttributeError: Attribute author is read-only
